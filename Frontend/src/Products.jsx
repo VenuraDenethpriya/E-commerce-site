@@ -89,7 +89,7 @@ function Products() {
     { _id: "5", name: "Smart Watches" },
   ];
 
-  const [selectedCategoryId, setSelectedCategoryId] = useState("1");
+  const [selectedCategoryId, setSelectedCategoryId] = useState("ALL");
   const filteredProducts =
     selectedCategoryId === "ALL"
       ? products
@@ -99,7 +99,7 @@ function Products() {
     setSelectedCategoryId(_id);
   };
 
-  const [sort, setSort] = useState('');
+  const [sort, setSort] = useState('0');
   const orderProduct =
     sort === "Ascending"
       ? filteredProducts.sort((a, b) => a.price - b.price)
