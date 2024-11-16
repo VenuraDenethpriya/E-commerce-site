@@ -1,5 +1,6 @@
 import Hero from "./Hero"
 import Navigation from "./Navigation"
+import Products from "./Products";
 
 function App() {
   const name = "";
@@ -9,6 +10,7 @@ function App() {
     <>
       <Navigation name={name} cardCount={cardCount}/>
       <Hero/>
+      <Products/>
     </>
   )
 }

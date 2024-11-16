@@ -1,14 +1,5 @@
 import { Button } from "@/components/ui/button";
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import {
   Carousel,
   CarouselContent,
   CarouselItem,
@@ -55,36 +46,7 @@ function Hero() {
       </Carousel>
 
         <div className="flex gap-5 flex-wrap">
-            <div className="pt-8">
-                <Card className="w-96">
-                <CardHeader>
-                    <Badge className="w-fit">New</Badge>
-                    <CardTitle>Card Title</CardTitle>
-                    <CardDescription>Card Description</CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <p>Card Content</p>
-                </CardContent>
-                <CardFooter>
-                    <Button>Buy Now</Button>
-                </CardFooter>
-                </Card>
-            </div>
-            <div className="pt-8">
-                <Card className="w-96">
-                <CardHeader>
-                    <Badge variant="destructive" className="w-fit">Out of stock</Badge>
-                    <CardTitle>Card Title</CardTitle>
-                    <CardDescription>Card Description</CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <p>Card Content</p>
-                </CardContent>
-                <CardFooter>
-                    <Button variant="outline">Buy Now</Button>
-                </CardFooter>
-                </Card>
-            </div>
+            
         </div>
     </section>
     )
