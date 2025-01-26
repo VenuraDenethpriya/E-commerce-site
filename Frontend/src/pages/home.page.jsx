@@ -1,17 +1,15 @@
 import Hero from "@/Hero";
 import Products from "@/Products";
 import Navigation from "@/Navigation";
+import { useSelector } from "react-redux";
 
 function HomePage() {
-    const name = ""
-  const cartCount = 3
 
   return (
-    <div>
-      <Navigation name={name} cartCount={cartCount} />
+    <main>
       <Hero />
-      <Products/>
-    </div>
+      <Products />
+    </main>
   )
 }
 
