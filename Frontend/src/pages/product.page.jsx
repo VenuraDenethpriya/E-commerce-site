@@ -2,7 +2,7 @@
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { useGetProductQuery } from "@/lib/api"
-import { addToBuy } from "@/lib/features/BuySlice"
+import { addToBuy } from "@/lib/features/buySlice"
 import { addToCart } from "@/lib/features/cartSlice"
 import ProductSkeleton from "@/ProductSkeleton"
 import { useDispatch } from "react-redux"

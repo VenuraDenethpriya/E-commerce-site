@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import { clearBuy } from "@/lib/features/BuySlice"
+import { clearBuy } from "@/lib/features/buySlice"
 import { clearCart } from "@/lib/features/cartSlice"
 import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"

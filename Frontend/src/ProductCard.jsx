@@ -7,7 +7,7 @@ import { IoMdHeartEmpty } from "react-icons/io";
 import { FaHeart } from "react-icons/fa6";
 import { Link, useNavigate } from "react-router";
 import { addToSave } from "./lib/features/saveSlice";
-import { addToBuy } from "./lib/features/BuySlice";
+import { addToBuy } from "./lib/features/buySlice";
 import { useGetProductQuery } from "./lib/api";
 
 function ProductCard(props) {
