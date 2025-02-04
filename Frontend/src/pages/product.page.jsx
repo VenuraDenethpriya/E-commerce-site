@@ -48,7 +48,7 @@ const ProductView = () => {
             <div className="grid md:grid-cols-2 gap-8">
                 <div>
                     <img
-                        src={product.image || "/placeholder.svg"}
+                        src={product.image || "/placeholder.png"}
                         alt={product.name}
                         className="rounded-lg object-cover w-full h-[500px]"
                     />

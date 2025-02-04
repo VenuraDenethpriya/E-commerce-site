@@ -58,7 +58,7 @@ function Products() {
     return (
       <section className="p-12">
         <div className="flex justify-between">
-          <h2 className="text-4xl font-semibold">Our Top Products</h2>
+          <h2 className="sm:text-4xl font-semibold text-md">Our Top Products</h2>
           <SortBy />
         </div>
         <Separator className="mt-2" />
@@ -98,7 +98,7 @@ function Products() {
     return (
       <section className="p-12">
         <div className="flex justify-between">
-          <h2 className="text-4xl font-semibold">Our Top Products</h2>
+          <h2 className="sm:text-4xl font-semibold text-md">Our Top Products</h2>
           <SortBy
           />
         </div>
@@ -115,13 +115,13 @@ function Products() {
   return (
     <section className="p-12">
       <div className="flex justify-between">
-        <h2 className="text-4xl font-semibold">Our Top Products</h2>
+        <h2 className="sm:text-4xl font-semibold text-md">Our Top Products</h2>
         <SortBy
         handleSortChange={handleSortChange}
         />
       </div>
       <Separator className="mt-2" />
-      <div className="mt-4 flex items-center gap-4">
+      <div className="sm:overflow-x-hidden mt-4 flex items-center gap-4 overflow-x-scroll">
         {
           [{ _id: "ALL", name: "ALL" }, ...categories].map((category) => (
             <Tab

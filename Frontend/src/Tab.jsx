@@ -15,7 +15,7 @@ function Tab(props) {
     }
     return ( 
         <button 
-            className="border border-[#edeef1] px-2 py-1 rounded-md hover:bg-[#f3f5f7]"
+            className="border-[#edeef1] px-2 py-1 rounded-md hover:bg-[#f3f5f7]"
             onClick={handleClick}
         >
             {props.name}
