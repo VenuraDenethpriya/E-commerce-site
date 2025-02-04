@@ -19,18 +19,20 @@ function Products() {
       ? products
       : products.filter((product) => product.categoryId === selectedCategoryId);
 
-  //const [productOrder, setProductOrder] = useState("");
-  // const productList = productOrder === "Ascending"
-  // ? filteredProducts.sort((a, b) => a.price - b.price)
-  //: filteredProducts.sort((a, b) => b.price - a.price)
+
+  const [productOrder, setProductOrder] =  useState("0");
+  
+  const productList = filteredProducts ? [...filteredProducts].sort((a, b) => 
+    productOrder === "ascending" ? a.price - b.price : b.price - a.price
+  ) : [];
 
   const handleTabClick = (_id) => {
     setSelectedCategoryId(_id)
   }
 
-  //const handleSortChange = (event) => {
-  // setProductOrder(event.target.value)
-  // }
+  const handleSortChange = (event) => {
+   setProductOrder(event.target.value)
+   }
 
   /*useEffect(() => {
     getProducts().then((data) => {
@@ -115,7 +117,7 @@ function Products() {
       <div className="flex justify-between">
         <h2 className="text-4xl font-semibold">Our Top Products</h2>
         <SortBy
-        //handleSortChange={handleSortChange}
+        handleSortChange={handleSortChange}
         />
       </div>
       <Separator className="mt-2" />
@@ -132,7 +134,7 @@ function Products() {
           ))
         }
       </div>
-      <ProductCards products={filteredProducts} />
+      <ProductCards products={productList} />
     </section>
   );
 }

@@ -16,6 +16,7 @@ import LikeProducts from "./pages/like.page";
 import CheckoutPage from "./pages/checkout";
 import PaymentPage from "./pages/payment.page";
 import CompletePage from "./pages/complete.page";
+import ProductView from "./pages/product.page";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 
@@ -39,6 +40,10 @@ createRoot(document.getElementById("root")).render(
             <Route path="/likeproducts" element={<LikeProducts />} />
             <Route path="/shop/payments" element={<PaymentPage/>} />
             <Route path="/shop/complete" element={<CompletePage/>} />
+            <Route path="/product/:id" element={<ProductView/>} />
+            <Route path="/product/:id/shop/cart/checkout" element={<CheckoutPage />} />
+            <Route path="/shop/shop/cart/checkout" element={<CheckoutPage />} />
+            <Route path="/likeproducts/shop/cart/checkout" element={<CheckoutPage />} />
           </Route>
         <Route path="sign-in" element={<SignInPage />} />
         <Route path="sign-up" element={<SignUpPage />} />

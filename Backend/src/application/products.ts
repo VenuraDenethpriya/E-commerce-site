@@ -40,7 +40,7 @@ export const getProduct = async (req:Request, res:Response, next:NextFunction) =
     if(!product){
       throw new NotFoundError("Product not found ")
     }
-    return res.status(201).json(product).send();
+    return res.status(201).json(product);
   } catch (error) {
     next(error);
   }

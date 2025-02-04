@@ -12,13 +12,20 @@ function ShopPage() {
     const { data: categories, isLoading: isCategoryLoading, isError: isCategoriesError, error: categoriesError } = useGetCategoriesQuery()
 
     const [selectedCategoryId, setSelectedCategoryId] = useState("ALL");
+    const [productOrder, setProductOrder] = useState("");
 
     const filteredProducts =
         selectedCategoryId === "ALL"
             ? products
             : products.filter((product) => product.categoryId === selectedCategoryId);
 
+    const productList = filteredProducts ? [...filteredProducts].sort((a, b) =>
+        productOrder === "ascending" ? a.price - b.price : b.price - a.price
+    ) : [];
 
+    const handleSortChange = (event) => {
+        setProductOrder(event.target.value);
+    }
 
     const handleTabClick = (_id) => {
         setSelectedCategoryId(_id)
@@ -85,7 +92,9 @@ function ShopPage() {
         <main className="px-12 py-8">
             <div className="flex justify-between">
                 <h2 className="text-2xl font-semibold">Our Products</h2>
-                <SortBy />
+                <SortBy
+                    handleSortChange={handleSortChange}
+                 />
             </div>
             <Separator />
             <div className="mt-4 flex items-center gap-4">
@@ -102,7 +111,7 @@ function ShopPage() {
                 }
             </div>
             <div className="mt-4 flex items-center gap-4">
-                <ProductCards products={filteredProducts} />
+                <ProductCards products={productList} />
             </div>
         </main>
     );

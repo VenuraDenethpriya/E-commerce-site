@@ -1,14 +1,15 @@
 import ShippingAddressform from "@/components/ShippingAddressform"
 import { useUser } from "@clerk/clerk-react"
 import { useSelector } from "react-redux"
-import { useNavigate } from "react-router"
 
 function CheckoutPage() {
   const { isLLoaded: isAuthLoaded, isSignedIn, user } = useUser()
   const cart = useSelector((state) => state.cart.value)
   const buy = useSelector((state) => state.buy.value)
-  const navigate = useNavigate()
+    
 
+    
+ 
   return (
     <main className="container mx-auto px-4 py-8 max-w-4xl">
       <h2 className="text-4xl font-bold mb-8 text-center">Checkout</h2>

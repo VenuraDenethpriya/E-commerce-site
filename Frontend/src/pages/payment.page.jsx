@@ -11,6 +11,7 @@ function PaymentPage() {
   const dispatch = useDispatch()
 
   const totalAmount = cart.reduce((acc, item) => acc + item.product.price * item.quantity, 0)
+  const totalBuyAmount = buy.reduce((acc, item) => acc + item.product.price * item.quantity , 0)
 
   return (
     <main className="container mx-auto px-4 py-8 max-w-4xl">
@@ -39,7 +40,12 @@ function PaymentPage() {
 
         </div>
         <div className="mt-4 pt-2 border-t">
-          <p className="text-xl font-bold text-right">Total: ${totalAmount.toFixed(2)}</p>
+          {
+            buy.length > 0 ? (
+              <p className="text-xl font-bold text-right">Total: ${totalBuyAmount.toFixed(2)}</p>
+            ) : <p className="text-xl font-bold text-right">Total: ${totalAmount.toFixed(2)}</p>
+
+          }
         </div>
       </div>
 

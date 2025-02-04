@@ -5,13 +5,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "./lib/features/cartSlice";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { FaHeart } from "react-icons/fa6";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { addToSave } from "./lib/features/saveSlice";
 import { addToBuy } from "./lib/features/BuySlice";
+import { useGetProductQuery } from "./lib/api";
 
 function ProductCard(props) {
+
     //const count = useSelector((state) => state.counter.value)
     const save = useSelector((state) => state.save.value)
+    
+    const navigate = useNavigate()
     const dispatch = useDispatch()
 
 
@@ -57,11 +61,17 @@ function ProductCard(props) {
         )
 
     }
+
+    const handleProductClick = async(e) => {
+        e.preventDefault();
+        navigate(`/product/${props._id}`)
+    }
+
     return (
         <Card className="w-fit cursor-pointer">
             <div className="flex justify-between">
                 <div className="h-60 bg-card rounded-lg p-4 relative justify-center">
-                    <img src={props.image} alt="ProductImage" className="block" />
+                    <img src={props.image} alt="ProductImage" className="block"  onClick={handleProductClick}/>
                 </div>
                 {
                     save.some((item) => item._id === props._id) ? (
