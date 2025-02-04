@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import counterReducer from './features/counterSlice'
 import cartReducer from './features/cartSlice'
 import saveReducer from './features/saveSlice'
+import buyReducer from './features/BuySlice'
 
 import { Api } from './api'
 import { setupListeners } from '@reduxjs/toolkit/query'
@@ -11,6 +12,7 @@ export const store = configureStore({
     counter: counterReducer,
     cart: cartReducer,
     save: saveReducer,
+    buy: buyReducer,
     [Api.reducerPath]: Api.reducer,
   },
   middleware: (getDefaultMiddleware) =>

@@ -12,8 +12,10 @@ import CartPage from "./pages/cart.page";
 import RootLayout from "./layouts/root.layout";
 import ShopPage from "./pages/shop.page";
 import Accountpage from "./pages/account.page";
-import PurchasePage from "./pages/parchase.page";
 import LikeProducts from "./pages/like.page";
+import CheckoutPage from "./pages/checkout";
+import PaymentPage from "./pages/payment.page";
+import CompletePage from "./pages/complete.page";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 
@@ -33,8 +35,10 @@ createRoot(document.getElementById("root")).render(
             <Route path="/shop" element={<ShopPage />} />
             <Route path="/shop/cart" element={<CartPage />} />
             <Route path="/account" element={<Accountpage />} />
-            <Route path="/shop/cart/purchase" element={<PurchasePage />} />
+            <Route path="/shop/cart/checkout" element={<CheckoutPage />} />
             <Route path="/likeproducts" element={<LikeProducts />} />
+            <Route path="/shop/payments" element={<PaymentPage/>} />
+            <Route path="/shop/complete" element={<CompletePage/>} />
           </Route>
         <Route path="sign-in" element={<SignInPage />} />
         <Route path="sign-up" element={<SignUpPage />} />

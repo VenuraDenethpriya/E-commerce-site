@@ -2,43 +2,46 @@ import { useSelector, useDispatch } from "react-redux"
 //import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Minus, Plus, Trash2, ShoppingCart } from "lucide-react"
-import { incrementQuantity, decrementQuantity, removeItem } from "../lib/features/counterSlice"
+import { Link } from "react-router"
+import { decrementQuantity, incrementQuantity, removeItem } from "@/lib/features/cartSlice"
 
 
 
 function CartPage() {
-  const cart = useSelector((state) => state.cart.value)
   const dispatch = useDispatch()
+  const cartItems = useSelector((state) => state.cart.value)
 
-  const handleIncrementQuantity = (_id) => {
-    dispatch(incrementQuantity(_id))
+
+
+  const handleIncrement = (product) => {
+    dispatch(incrementQuantity(product))
   }
 
-  const handleDecrementQuantity = (_id) => {
-    dispatch(decrementQuantity(_id))
+  const handleDecrement = (product) => {
+    dispatch(decrementQuantity(product))
   }
 
-  const handleRemoveItem = (_id) => {
-    dispatch(removeItem(_id))
+  const handleRemove = (product) => {
+    dispatch(removeItem(product))
   }
 
   const calculateTotal = () => {
-    return cart.reduce((total, item) => total + item.product.price * item.quantity, 0)
+    return cartItems.reduce((total, item) => total + item.product.price * item.quantity, 0)
   }
 
   const handleCheckout = () => {
-    console.log("Proceeding to checkout with items:", cart)
+    console.log("Proceeding to checkout with items:", cartItems)
     // Here you would typically integrate with a payment gateway or navigate to a checkout page
   }
   return (
     <main>
         <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Your Cart</h1>
-      {cart.length === 0 ? (
+      {cartItems.length === 0 ? (
         <p>Your cart is empty.</p>
       ) : (
         <div className="space-y-4">
-          {cart.map((item) => (
+          {cartItems.map((item) => (
             <div key={item.product._id} className="flex items-center space-x-4 border-b pb-4">
              {/* <Image
                 src={item.product.image || "/placeholder.svg"}
@@ -55,17 +58,17 @@ function CartPage() {
                 <Button
                   variant="outline"
                   size="icon"
-                  onClick={() => handleDecrementQuantity(item.product._id)}
+                  onClick={() => handleDecrement(item.product)}
                   disabled={item.quantity === 1}
                 >
                   <Minus className="h-4 w-4" />
                 </Button>
                 <span className="w-8 text-center">{item.quantity}</span>
-                <Button variant="outline" size="icon" onClick={() => handleIncrementQuantity(item.product._id)}>
+                <Button variant="outline" size="icon" onClick={() => handleIncrement(item.product)}>
                   <Plus className="h-4 w-4" />
                 </Button>
               </div>
-              <Button variant="destructive" size="icon" onClick={() => handleRemoveItem(item.product._id)}>
+              <Button variant="destructive" size="icon" onClick={() => handleRemove(item.product)} >
                 <Trash2 className="h-4 w-4" />
               </Button>
             </div>
@@ -74,9 +77,10 @@ function CartPage() {
             <span className="font-semibold">Total:</span>
             <span className="font-bold text-xl">${calculateTotal().toFixed(2)}</span>
           </div>
-          <Button className="w-full mt-4" onClick={handleCheckout}>
+          <Link to="/shop/cart/checkout"><Button className="w-full mt-4" onClick={handleCheckout}>
             <ShoppingCart className="mr-2 h-4 w-4" /> Proceed to Checkout
-          </Button>
+          </Button></Link>
+          
         </div>
       )}
     </div>

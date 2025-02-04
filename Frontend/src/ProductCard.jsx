@@ -7,6 +7,7 @@ import { IoMdHeartEmpty } from "react-icons/io";
 import { FaHeart } from "react-icons/fa6";
 import { Link } from "react-router";
 import { addToSave } from "./lib/features/saveSlice";
+import { addToBuy } from "./lib/features/BuySlice";
 
 function ProductCard(props) {
     //const count = useSelector((state) => state.counter.value)
@@ -34,6 +35,17 @@ function ProductCard(props) {
         })
         )
     }
+
+    const handleBuyClick = (e) => {
+        dispatch(addToBuy({
+            _id: props._id,
+            name: props.name,
+            price: props.price,
+            image: props.image,
+            description: props.description,
+        }))
+    }
+
     const handleSaveClick = (e) => {
         dispatch(addToSave({
             _id: props._id,
@@ -95,8 +107,8 @@ function ProductCard(props) {
                     <div>
                         <Button variant="outline" className="border-2 border-black hover:bg-black hover:text-white" onClick={handleClick}>Add to Cart</Button>
                     </div>
-                    <Link to='/shop/cart/purchase'>
-                        <Button className="hover:scale-110 transition-transform duration-100 ease-in-out">Buy Now</Button>
+                    <Link to= 'shop/cart/checkout'>
+                        <Button className="hover:scale-110 transition-transform duration-100 ease-in-out" onClick={handleBuyClick}>Buy Now</Button>
                     </Link>
                 </div>
             </div>

@@ -20,17 +20,17 @@ function Products() {
       : products.filter((product) => product.categoryId === selectedCategoryId);
 
   //const [productOrder, setProductOrder] = useState("");
- // const productList = productOrder === "Ascending"
-   // ? filteredProducts.sort((a, b) => a.price - b.price)
-    //: filteredProducts.sort((a, b) => b.price - a.price)
+  // const productList = productOrder === "Ascending"
+  // ? filteredProducts.sort((a, b) => a.price - b.price)
+  //: filteredProducts.sort((a, b) => b.price - a.price)
 
   const handleTabClick = (_id) => {
     setSelectedCategoryId(_id)
   }
 
   //const handleSortChange = (event) => {
-   // setProductOrder(event.target.value)
- // }
+  // setProductOrder(event.target.value)
+  // }
 
   /*useEffect(() => {
     getProducts().then((data) => {
@@ -115,17 +115,17 @@ function Products() {
       <div className="flex justify-between">
         <h2 className="text-4xl font-semibold">Our Top Products</h2>
         <SortBy
-          //handleSortChange={handleSortChange}
+        //handleSortChange={handleSortChange}
         />
       </div>
       <Separator className="mt-2" />
       <div className="mt-4 flex items-center gap-4">
         {
-          [...categories, { _id: "ALL", name: "ALL" }].map((category) => (
+          [{ _id: "ALL", name: "ALL" }, ...categories].map((category) => (
             <Tab
               key={category._id}
               _id={category._id}
-              selectedCategoryId={selectedCategoryId}
+              selectedCategoryId={categories}
               name={category.name}
               onTabClick={handleTabClick}
             />

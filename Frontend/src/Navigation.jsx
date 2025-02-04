@@ -36,12 +36,12 @@ function Navigation() {
   return (
     <nav className="flex items-center justify-between py-8 px-12">
       <div className="flex gap-x-16">
-        <a className="font-semibold text-3xl" href="/">
+        <Link to='/' className="font-semibold text-3xl" href="/">
           Mebius
-        </a>
+        </Link>
         <div className="flex items-center gap-4">
-          <a href="/">Home</a>
-          <a href="/shop">Shop</a>
+          <Link to='/'>Home</Link>
+          <Link to='/shop'>Shop</Link>
         </div>
       </div>
       <SignedOut>
@@ -73,8 +73,14 @@ function Navigation() {
 
             <Link to="/shop/cart" className="flex items-center gap-4 relative">
               <div className="flex items-center gap-2">
-                <p className="text-lg">{getCartQuantity()}</p>
                 <ShoppingCart />
+                {
+                  cart.length === 0 ? <div>
+                    <sup><p></p></sup>
+                  </div> : <sup><p className="absolute right-0 bottom-0 bg-black text-white py-2 px-2 rounded-full">{getCartQuantity()}</p></sup>
+                }
+                
+
               </div>
             </Link>
             <div className="flex items-center gap-2">
