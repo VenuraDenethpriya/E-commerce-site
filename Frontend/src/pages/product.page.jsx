@@ -1,4 +1,3 @@
-
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
@@ -8,10 +7,12 @@ import { addToBuy } from "@/lib/features/buySlice"
 import { addToCart } from "@/lib/features/cartSlice"
 import ProductCards from "@/ProductCards"
 import ProductSkeleton from "@/ProductSkeleton"
+import { useUser } from "@clerk/clerk-react"
 import { useDispatch } from "react-redux"
 import { Link, useNavigate, useParams } from "react-router"
 
 const ProductView = () => {
+    const {isSignedIn} = useUser()
     const { data: products } = useGetProductsQuery()
     const { id } = useParams()
     const { data: product, isLoading, isError, error } = useGetProductQuery(id)
