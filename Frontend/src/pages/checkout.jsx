@@ -1,6 +1,7 @@
 import ShippingAddressform from "@/components/ShippingAddressform"
 import { useUser } from "@clerk/clerk-react"
 import { useSelector } from "react-redux"
+import { Navigate } from "react-router"
 
 function CheckoutPage() {
   const { isLLoaded: isAuthLoaded, isSignedIn, user } = useUser()
@@ -8,7 +9,9 @@ function CheckoutPage() {
   const buy = useSelector((state) => state.buy.value)
     
   console.log(buy)
-    
+  if(!isSignedIn){
+    return <Navigate to="/sign-in"/>
+  }
  
   return (
     <main className="container mx-auto px-4 py-8 max-w-4xl">
