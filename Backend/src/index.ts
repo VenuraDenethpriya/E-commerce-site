@@ -12,8 +12,8 @@ import { clerkMiddleware } from '@clerk/express';
 import { paymentRouter } from './api/payment';
 import { userRouter } from './api/user';
 
-const publishableKey = process.env.VITE_CLERK_PUBLISHABLE_KEY;
-const secretKey = process.env.VITE_CLERK_SECRET_KEY
+const publishableKey = process.env.CLERK_PUBLISHABLE_KEY;
+const secretKey = process.env.CLERK_SECRET_KEY
 
 app.use(express.json());
 app.use(clerkMiddleware({
