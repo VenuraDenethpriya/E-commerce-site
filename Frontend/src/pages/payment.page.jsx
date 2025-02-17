@@ -19,7 +19,16 @@ function PaymentPage() {
       <div className="bg-white p-6 rounded-lg shadow-md mb-8">
         <h2 className="text-2xl font-semibold mb-4">Order Summary</h2>
         <div className="space-y-4">
-          {cart.map((item, index) => (
+          {
+            buy.length != 0 ? <div>{buy.map((item, index) => (
+              <div key={index} className="flex justify-between items-center border-b pb-2">
+                <div>
+                  <p className="font-medium">{item.product.name}</p>
+                  <p className="text-sm text-gray-600">Quantity: {item.quantity}</p>
+                </div>
+                <p className="font-semibold">${(item.product.price * item.quantity).toFixed(2)}</p>
+              </div>
+            ))}</div> : <div>{cart.map((item, index) => (
             <div key={index} className="flex justify-between items-center border-b pb-2">
               <div>
                 <p className="font-medium">{item.product.name}</p>
@@ -27,16 +36,10 @@ function PaymentPage() {
               </div>
               <p className="font-semibold">${(item.product.price * item.quantity).toFixed(2)}</p>
             </div>
-          ))}
-          {buy.map((item, index) => (
-            <div key={index} className="flex justify-between items-center border-b pb-2">
-              <div>
-                <p className="font-medium">{item.product.name}</p>
-                <p className="text-sm text-gray-600">Quantity: {item.quantity}</p>
-              </div>
-              <p className="font-semibold">${(item.product.price * item.quantity).toFixed(2)}</p>
-            </div>
-          ))}
+          ))}</div>
+          }
+          
+          
 
         </div>
         <div className="mt-4 pt-2 border-t">

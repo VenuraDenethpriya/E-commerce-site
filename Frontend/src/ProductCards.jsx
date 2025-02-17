@@ -2,7 +2,7 @@ import ProductCard from "./ProductCard";
 
 function ProductCards(props) {
     return ( 
-        <div className="grid sm:grid-cols-4 gap-4 pt-4 grid-cols-1">
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 pt-4">
             {
                 props.products.map((product) => (
                     <ProductCard
@@ -12,6 +12,7 @@ function ProductCards(props) {
                         price={product.price}
                         image={product.image}
                         description={product.description}
+                        stock={product.stock}
                     />
                 ))
             }

@@ -17,6 +17,12 @@ import CheckoutPage from "./pages/checkout";
 import PaymentPage from "./pages/payment.page";
 import CompletePage from "./pages/complete.page";
 import ProductView from "./pages/product.page";
+import OrderPage from "./pages/order.page";
+import AdminLayout from "./layouts/admin.layout";
+import AdminProductPage from "./pages/admin.product.page";
+import AddProductPage from "./pages/add.page";
+import UsersPage from "./pages/users.page";
+import AdminOrderPage from "./pages/admin.orders.page";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 
@@ -30,24 +36,31 @@ createRoot(document.getElementById("root")).render(
     <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/">
       <Provider store={store}>
         <BrowserRouter>
-        <Routes>
-          <Route element={<RootLayout/>}>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/shop" element={<ShopPage />} />
-            <Route path="/shop/cart" element={<CartPage />} />
-            <Route path="/account" element={<Accountpage />} />
-            <Route path="/shop/cart/checkout" element={<CheckoutPage />} />
-            <Route path="/likeproducts" element={<LikeProducts />} />
-            <Route path="/shop/payments" element={<PaymentPage/>} />
-            <Route path="/shop/complete" element={<CompletePage/>} />
-            <Route path="/product/:id" element={<ProductView/>} />
-            <Route path="/product/:id/shop/cart/checkout" element={<CheckoutPage />} />
-            <Route path="/shop/shop/cart/checkout" element={<CheckoutPage />} />
-            <Route path="/likeproducts/shop/cart/checkout" element={<CheckoutPage />} />
-          </Route>
-        <Route path="sign-in" element={<SignInPage />} />
-        <Route path="sign-up" element={<SignUpPage />} />
-      </Routes>
+          <Routes>
+            <Route element={<RootLayout />}>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/shop" element={<ShopPage />} />
+              <Route path="/shop/cart" element={<CartPage />} />
+              <Route path="/account" element={<Accountpage />} />
+              <Route path="/shop/cart/checkout" element={<CheckoutPage />} />
+              <Route path="/likeproducts" element={<LikeProducts />} />
+              <Route path="/shop/payments" element={<PaymentPage />} />
+              <Route path="/shop/complete" element={<CompletePage />} />
+              <Route path="/product/:id" element={<ProductView />} />
+              <Route path="/product/:id/shop/cart/checkout" element={<CheckoutPage />} />
+              <Route path="/shop/shop/cart/checkout" element={<CheckoutPage />} />
+              <Route path="/likeproducts/shop/cart/checkout" element={<CheckoutPage />} />
+              <Route path="/orders" element={<OrderPage />} />
+            </Route>
+            <Route element={<AdminLayout />}>
+              <Route path="/admin" element={<AdminProductPage />} />
+              <Route path="/admin/addproducts" element={<AddProductPage />} />
+              <Route path="/admin/users" element={<UsersPage />} />
+              <Route path="/admin/orders" element={<AdminOrderPage />} />
+            </Route>
+            <Route path="sign-in" element={<SignInPage />} />
+            <Route path="sign-up" element={<SignUpPage />} />
+          </Routes>
         </BrowserRouter>
       </Provider>
     </ClerkProvider>

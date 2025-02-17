@@ -35,7 +35,7 @@ function ShopPage() {
         return (
             <main className="p-12">
                 <div className="flex justify-between">
-                    <h2 className="text-4xl font-semibold">Our Top Products</h2>
+                    <h2 className="text-4xl font-semibold">Our Products</h2>
                     <SortBy />
                 </div>
                 <Separator className="mt-2" />
@@ -74,7 +74,7 @@ function ShopPage() {
         return (
             <main className="p-12">
                 <div className="flex justify-between">
-                    <h2 className="text-4xl font-semibold">Our Top Products</h2>
+                    <h2 className="text-4xl font-semibold">Our Products</h2>
                     <SortBy
                     />
                 </div>
@@ -91,19 +91,19 @@ function ShopPage() {
     return (
         <main className="px-12 py-8">
             <div className="flex justify-between">
-                <h2 className="text-2xl font-semibold">Our Products</h2>
+                <h2 className="sm:text-4xl text-md font-semibold">Our Products</h2>
                 <SortBy
                     handleSortChange={handleSortChange}
                  />
             </div>
             <Separator />
-            <div className="mt-4 flex items-center gap-4">
+            <div className="sm:overflow-x-hidden mt-4 flex items-center gap-4 overflow-x-scroll">
                 {
                     [{ _id: "ALL", name: "ALL" }, ...categories].map((category) => (
                         <Tab
                             key={category._id}
                             _id={category._id}
-                            selectedCategoryId={categories}
+                            selectedCategoryId={selectedCategoryId}
                             name={category.name}
                             onTabClick={handleTabClick}
                         />

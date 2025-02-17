@@ -29,14 +29,14 @@ export function CarouselPlugin() {
                     <CarouselItem key={index}>
                         <div className="">
                             <Card>
-                                <CardContent className="p-0">
+                                <CardContent className="w-full p-0">
                                     <div className="grid sm:grid-cols-2 rounded-md sm:min-h-[60vh] bg-[#f4f8f9]">
-                                        <div className="hidden sm:flex flex-col sm:w-auto sm:h-auto justify-center gap-4 px-8">
+                                        <div className="hidden sm:flex flex-col sm:w-auto  sm:h-auto justify-center gap-4 px-8">
                                             <span className="inline-block bg-[#febc26] w-fit rounded-full text-xs py-1 px-2">WEEKLY DISCOUNT</span>
                                             <h1 className="text-6xl font-semibold">Premium Product Online Shop</h1>
                                             <p>
-                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius quos
-                                                suscipit est autem quia? Voluptatem?
+                                            Discover the latest tech gadgets and accessories at unbeatable prices. 
+                                            Shop smartphones, smartwatches, and more with fast shipping and secure checkout.
                                             </p>
                                             <Link to='/shop'>
                                                 <Button className="w-fit">
@@ -49,7 +49,7 @@ export function CarouselPlugin() {
                                             <img
                                                 src="https://fee-storefront.vercel.app/assets/hero/hero.jpg"
                                                 alt=""
-                                                className="sm:w-full sm:h-full"
+                                                className="sm:h-full"
                                             />
                                         </div>
                                     </div>
@@ -59,8 +59,8 @@ export function CarouselPlugin() {
                     </CarouselItem>
                 ))}
             </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
+            <CarouselPrevious className="hidden sm:block " />
+            <CarouselNext className="hidden sm:block" />
         </Carousel>
     )
 }

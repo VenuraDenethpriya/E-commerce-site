@@ -6,5 +6,5 @@ export const ProductDTO = z.object({
     name: z.string(),
     price: z.number(),
     description: z.string(),
-  
+    stock: z.number(),
 });

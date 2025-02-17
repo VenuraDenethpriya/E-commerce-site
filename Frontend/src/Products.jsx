@@ -20,7 +20,7 @@ function Products() {
       : products.filter((product) => product.categoryId === selectedCategoryId);
 
 
-  const [productOrder, setProductOrder] =  useState("0");
+  const [productOrder, setProductOrder] =  useState("");
   
   const productList = filteredProducts ? [...filteredProducts].sort((a, b) => 
     productOrder === "ascending" ? a.price - b.price : b.price - a.price
@@ -115,7 +115,7 @@ function Products() {
   return (
     <section className="p-12">
       <div className="flex justify-between">
-        <h2 className="sm:text-4xl font-semibold text-md">Our Top Products</h2>
+        <h2 className="sm:text-4xl font-semibold text-sm">Our Top Products</h2>
         <SortBy
         handleSortChange={handleSortChange}
         />
@@ -127,7 +127,7 @@ function Products() {
             <Tab
               key={category._id}
               _id={category._id}
-              selectedCategoryId={categories}
+              selectedCategoryId={selectedCategoryId}
               name={category.name}
               onTabClick={handleTabClick}
             />

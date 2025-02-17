@@ -1,12 +1,12 @@
-import  Mongoose  from "mongoose";
+import mongoose from "mongoose";
 
-const addressSchema = new Mongoose.Schema({
-    name: String,
-    phoneNumber: String,
-    address: String,
-    city: String,
-    state: String,
-    zipCode: String
-})
+const addressSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  phoneNumber: { type: String, required: true },
+  address: { type: String, required: true },
+  city: { type: String, required: true },
+  state: { type: String, required: true },
+  zipCode: { type: String, required: true },
+});
 
-export default Mongoose.model("Address", addressSchema);
+export default mongoose.model("Address", addressSchema);

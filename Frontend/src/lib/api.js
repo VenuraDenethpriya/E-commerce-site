@@ -1,4 +1,4 @@
-export const getProducts = async () => {
+/*export const getProducts = async () => {
   try {
     const res = await fetch("http://localhost:8000/api/products", {
       method: "GET",
@@ -31,6 +31,7 @@ export const getCategory = async () => {
     );
   }
 };
+*/
 
 // Need to use the React-specific entry point to import createApi
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
@@ -40,9 +41,11 @@ export const Api = createApi({
   reducerPath: "Api",
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:8000/api/",
+    credentials: "include",
     prepareHeaders: async (headers, { getState }) => {
       const token = await window.Clerk?.session?.getToken();
-      console.log(token);
+      console.log("Token:", token);
+
       if (token) {
         headers.set("Authorization", `Bearer ${token}`);
       }
@@ -62,10 +65,49 @@ export const Api = createApi({
     getOrder: builder.query({
       query: (id) => `orders/${id}`,
     }),
+    getOrdersByUser: builder.query({
+      query: (userId) => `orders/user/${userId}`,
+    }),
+    getOrders: builder.query({
+      query: () => `orders`,
+    }),
+    createProduct: builder.mutation({
+      query: (body) => ({
+        url: `products`,
+        method: "POST",
+        body,
+      }),
+    }),
     createOrder: builder.mutation({
       query: (body) => ({
         url: `orders`,
         method: "POST",
+        body,
+      }),
+    }),
+    updateProduct: builder.mutation({
+      query: ({ id, body }) => ({
+        url: `products/${id}`,
+        method: "PATCH",
+        body,
+      }),
+    }),
+    deleteProduct: builder.mutation({
+      query: (id) => ({
+        url: `products/${id}`,
+        method: "DELETE",
+      }),
+    }),
+    getUsers: builder.query({
+      query: () => ({
+        url: "users",
+        credentials: "include",
+      }),
+    }),
+    updateOrder: builder.mutation({
+      query: ({ id, body }) => ({
+        url: `orders/${id}`,
+        method: "PATCH",
         body,
       }),
     }),
@@ -78,4 +120,11 @@ export const {
   useCreateOrderMutation,
   useGetOrderQuery,
   useGetProductQuery,
+  useGetOrdersByUserQuery,
+  useCreateProductMutation,
+  useUpdateProductMutation,
+  useDeleteProductMutation,
+  useGetUsersQuery,
+  useGetOrdersQuery,
+  useUpdateOrderMutation,
 } = Api;

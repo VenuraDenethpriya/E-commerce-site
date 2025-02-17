@@ -10,6 +10,7 @@ import cors from 'cors';
 import { orderRouter } from './api/order';
 import { clerkMiddleware } from '@clerk/express';
 import { paymentRouter } from './api/payment';
+import { userRouter } from './api/user';
 
 const publishableKey = process.env.VITE_CLERK_PUBLISHABLE_KEY;
 const secretKey = process.env.VITE_CLERK_SECRET_KEY
@@ -20,7 +21,7 @@ app.use(clerkMiddleware({
     secretKey,
 }));
 
-app.use(cors({ origin: 'http://localhost:5173' }));
+app.use(cors({ origin: 'http://localhost:5173', credentials: true, }));
 app.use((req, res, next) => {
     console.log('Request success');
     console.log(req.method, req.url);
@@ -31,6 +32,7 @@ app.use('/api/products',productRouter)
 app.use('/api/categories',categoryRouter)
 app.use('/api/orders', orderRouter)
 app.use('/api/payments', paymentRouter)
+app.use('/api/users', userRouter)
 app.use(globalErrorHanlingMiddleware as any);
 
 connectDB();

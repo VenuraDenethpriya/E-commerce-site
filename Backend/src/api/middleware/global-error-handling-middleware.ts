@@ -17,14 +17,23 @@ const globalErrorHanlingMiddleware = (error:Error, req:Request, res:Response, ne
             })
             .send();
     }
-    else{
-        return res
-            .status(500)
-            .json({
-                message: "Internal Server Error",
-            })
-            .send();
-    }
-};
-
+    else if (error.name === "UnauthorizedError") {
+        res
+          .status(401)
+          .json({
+            message: error.message,
+          })
+          .send();
+        return;
+      } else {
+        res
+          .status(500)
+          .json({
+            message: error.message,
+          })
+          .send();
+        return;
+      }
+    };
+    
 export default globalErrorHanlingMiddleware;

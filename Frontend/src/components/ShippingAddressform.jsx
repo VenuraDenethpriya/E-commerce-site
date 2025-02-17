@@ -1,11 +1,12 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod";
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "./ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "./ui/form";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { useNavigate } from "react-router";
-import { useCreateOrderMutation } from "@/lib/api";
+import { useCreateOrderMutation, useGetProductsQuery, useUpdateProductMutation } from "@/lib/api";
+
 
 const formSchema = z.object({
     name: z.string().min(2).max(50),
@@ -20,7 +21,9 @@ const formSchema = z.object({
     zipCode: z.string().min(2).max(50),
 })
 
-const ShippingAddressform = ({ cart, buy}) => {
+const ShippingAddressform = ({ cart, buy }) => {
+    const [updateProduct] = useUpdateProductMutation();
+
     const [createOrder, { isLoading, isError, data }] = useCreateOrderMutation();
     const form = useForm({
         resolver: zodResolver(formSchema),
@@ -29,9 +32,18 @@ const ShippingAddressform = ({ cart, buy}) => {
     const navigate = useNavigate();
 
 
-    function handleSubmit(values) {
+    async function handleSubmit(values) {
+        const orderItems = buy?.length !=0 ? buy : cart;
+
+        for (const item of orderItems) {
+            await updateProduct({
+                id : item.product._id,
+                body: { stock:(item.product.stock - item.quantity)  }
+            })
+
+        }
         createOrder({
-            items: cart || buy,
+            items: orderItems,
             ShippingAddress: {
                 name: values.name,
                 phoneNumber: values.phoneNumber,
@@ -47,7 +59,7 @@ const ShippingAddressform = ({ cart, buy}) => {
     return (
         <div>
             <Form {...form}>
-                <form onSubmit={form.handleSubmit(handleSubmit)} >
+                <form onSubmit={form.handleSubmit(handleSubmit)}>
 
                     <div className="grid grid-cols-2 gap-8 ">
                         <FormField

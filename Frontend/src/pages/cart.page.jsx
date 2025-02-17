@@ -52,7 +52,7 @@ function CartPage() {
               />*/}
               <div className="flex-grow">
                 <h2 className="font-semibold">{item.product.name}</h2>
-                <p className="text-gray-600">${item.product.price.toFixed(2)}</p>
+                <p className="text-gray-600">${item.product.price}</p>
               </div>
               <div className="flex items-center space-x-2">
                 <Button
@@ -75,7 +75,7 @@ function CartPage() {
           ))}
           <div className="flex justify-between items-center pt-4">
             <span className="font-semibold">Total:</span>
-            <span className="font-bold text-xl">${calculateTotal().toFixed(2)}</span>
+            <span className="font-bold text-xl">${calculateTotal()}</span>
           </div>
           <Link to="/shop/cart/checkout"><Button className="w-full mt-4" onClick={handleCheckout}>
             <ShoppingCart className="mr-2 h-4 w-4" /> Proceed to Checkout

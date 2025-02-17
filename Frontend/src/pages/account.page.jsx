@@ -18,6 +18,7 @@ function Accountpage() {
             <div className="mt-4">
                 <p>{user.username}</p>
                 <p>{user.emailAddresses[0].emailAddress}</p>
+                <p>{user.publicMetadata.role}</p>
             </div>
             
         </main>

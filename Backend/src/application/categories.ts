@@ -4,33 +4,43 @@ import ValidationError from "../domain/errors/validation-error";
 import Category from "../infrastructure/schemas/Category";
 import { Request, Response, NextFunction } from "express";
 
-export const getCategories = async (req:Request, res:Response, next:NextFunction) => {
+export const getCategories = async (
+    req:Request, 
+    res:Response, 
+    next:NextFunction
+) => {
     try {
         const categories = await Category.find();
-        return res
-            .status(200)
-            .json(categories)
+        res.status(200).json(categories)
+        return;
     } catch (error) {
         next(error);
     }
 }
 
-export const createCategory = async(req:Request, res:Response, next:NextFunction) => {
+export const createCategory = async(
+    req:Request, 
+    res:Response, 
+    next:NextFunction
+) => {
     try {
         const result = CategoryDTO.safeParse(req.body);
         if (!result.success) {
             throw new ValidationError("Invalid category data");
         }
         await Category.create(result.data);
-        return res
-            .status(201)
-            .send()
+        res.status(201).send()
+        return;
     } catch (error) {
         next(error);
     }
 }
 
-export const getCategory = async (req:Request, res:Response, next:NextFunction) => {
+export const getCategory = async (
+    req:Request, 
+    res:Response, 
+    next:NextFunction
+) => {
     try {
         const id = req.params.id
         const category = await Category.findById(id)
@@ -38,16 +48,18 @@ export const getCategory = async (req:Request, res:Response, next:NextFunction) 
         if (!category) {
             throw new NotFoundError("Category not found")
         }
-        return res
-            .status(200)
-            .json(category)
-            .send();
+        res.status(200).json(category).send();
+        return;
     } catch (error) {
         next(error);
     }
 }
 
-export const deleteCategory = async (req:Request, res:Response, next:NextFunction) => {
+export const deleteCategory = async (
+    req:Request, 
+    res:Response, 
+    next:NextFunction
+) => {
     try {
         const id = req.params.id
         const category = await Category.findByIdAndDelete(id)
@@ -55,17 +67,18 @@ export const deleteCategory = async (req:Request, res:Response, next:NextFunctio
         if (!category) {
             throw new NotFoundError("Category not found")
         }
-        
-        return res
-            .status(200)
-            .json(category)
-            .send();
+        res.status(200).send();
+        return;
     } catch (error) {
-        
+        next(error);
     }
 }
 
-export const updateCategory = async (req:Request, res:Response, next:NextFunction) => {
+export const updateCategory = async (
+    req:Request, 
+    res:Response, 
+    next:NextFunction
+) => {
     try {
         const id = req.params.id
         const category = await Category.findByIdAndUpdate(id, req.body)
@@ -74,11 +87,9 @@ export const updateCategory = async (req:Request, res:Response, next:NextFunctio
             throw new NotFoundError("Category not found")
         }
         
-        return res
-                .status(200)
-                .json(category)
-                .send();
+        res.status(200).send(category);
+        return;
     } catch (error) {
-        
+        next(error);
     }
 }

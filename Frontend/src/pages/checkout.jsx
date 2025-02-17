@@ -7,7 +7,7 @@ function CheckoutPage() {
   const cart = useSelector((state) => state.cart.value)
   const buy = useSelector((state) => state.buy.value)
     
-
+  console.log(buy)
     
  
   return (
@@ -17,26 +17,29 @@ function CheckoutPage() {
         <div className="bg-white p-6 rounded-lg shadow-md">
           <h3 className="text-2xl font-semibold mb-4">Order Details</h3>
           <div className="space-y-4">
-            {cart.map((item, index) => (
-              <div key={index} className="flex justify-between items-center border-b pb-2">
-                <div>
-                  <p className="font-medium">{item.product.name}</p>
-                  <p className="text-sm text-gray-600">Quantity: {item.quantity}</p>
+            {
+              buy !=0 ? <div>{buy.map((item, index) => (
+                <div key={index} className="flex justify-between items-center border-b pb-2">
+                  <div>
+                    <p className="font-medium">{item.product.name}</p>
+                    <p className="text-sm text-gray-600">Quantity: {item.quantity}</p>
+                  </div>
+                  <p className="font-semibold">${item.product.price}</p>
                 </div>
-                <p className="font-semibold">${item.product.price.toFixed(2)}</p>
-              </div>
-            ))
-            }
-            {buy.map((item, index) => (
-              <div key={index} className="flex justify-between items-center border-b pb-2">
-                <div>
-                  <p className="font-medium">{item.product.name}</p>
-                  <p className="text-sm text-gray-600">Quantity: {item.quantity}</p>
+              ))
+              }</div> : <div>{cart.map((item, index) => (
+                <div key={index} className="flex justify-between items-center border-b pb-2">
+                  <div>
+                    <p className="font-medium">{item.product.name}</p>
+                    <p className="text-sm text-gray-600">Quantity: {item.quantity}</p>
+                  </div>
+                  <p className="font-semibold">${item.product.price}</p>
                 </div>
-                <p className="font-semibold">${item.product.price.toFixed(2)}</p>
-              </div>
-            ))
+              ))
+              }</div>
             }
+            
+            
 
           </div>
           <div className="mt-4 pt-2 border-t">
@@ -48,7 +51,7 @@ function CheckoutPage() {
                   : cart && cart.length > 0
                     ? cart.reduce((total, item) => total + item.product.price * item.quantity, 0)
                     : 0
-              ).toFixed(2)}
+              )}
             </p>
           </div>
 
