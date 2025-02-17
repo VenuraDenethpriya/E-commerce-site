@@ -18,7 +18,7 @@ function ProductCard(props) {
 
     const handleClick = () => {
         if (!isSignedIn) {
-            window.location.href = "/sign-in";
+            navigate("/sign-in");
         }
         dispatch(addToCart({
             _id: props._id,
@@ -31,9 +31,6 @@ function ProductCard(props) {
     };
 
     const handleBuyClick = () => {
-        if (!isSignedIn) {
-            window.location.href = "/sign-in";
-        }
         dispatch(addToBuy({
             _id: props._id,
             name: props.name,
