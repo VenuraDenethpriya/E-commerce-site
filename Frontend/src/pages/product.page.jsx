@@ -9,15 +9,19 @@ import { addToCart } from "@/lib/features/cartSlice"
 import ProductCards from "@/ProductCards"
 import ProductSkeleton from "@/ProductSkeleton"
 import { useDispatch } from "react-redux"
-import { Link, useParams } from "react-router"
+import { Link, useNavigate, useParams } from "react-router"
 
 const ProductView = () => {
     const { data: products } = useGetProductsQuery()
     const { id } = useParams()
     const { data: product, isLoading, isError, error } = useGetProductQuery(id)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const handleClick = (e) => {
+        if (!isSignedIn) {
+            navigate("/sign-in")
+        }
         dispatch(addToCart({
             _id: product._id,
             name: product.name,
