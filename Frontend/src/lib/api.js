@@ -111,6 +111,9 @@ export const Api = createApi({
         body,
       }),
     }),
+    getCheckoutSessionStatus: builder.query({
+      query: (sessionId) => `payments/session-status?session_id=${sessionId}`,
+    }),
   }),
 });
 
@@ -127,4 +130,5 @@ export const {
   useGetUsersQuery,
   useGetOrdersQuery,
   useUpdateOrderMutation,
+  useGetCheckoutSessionStatusQuery,
 } = Api;

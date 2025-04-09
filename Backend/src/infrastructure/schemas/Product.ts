@@ -18,6 +18,9 @@ const ProductSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    stripePriceId:{
+        type: String,
+    },
     description: {
         type: String,
         required: true

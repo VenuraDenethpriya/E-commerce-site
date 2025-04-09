@@ -14,7 +14,7 @@ const formSchema = z.object({
     price: z.string().min(1).refine(value => !isNaN(Number(value)), {
         message: "Price must be a valid number",
     }).transform(value => parseInt(value, 10)),
-    description: z.string().min(2).max(500),
+    description: z.string().min(2),
     image: z.string().min(2).max(500),
     categoryId: z.string().min(2).max(100),
     stock: z.string().min(1).refine(value => !isNaN(Number(value)), {
@@ -30,29 +30,27 @@ const AddProductsForm = () => {
         resolver: zodResolver(formSchema),
     })
 
-    function handleSubmit(values) {
+    async function handleSubmit(values) {
         try {
-
-            createProduct({
+            const result = await createProduct({
                 name: values.productname,
                 price: values.price,
                 description: values.description,
                 image: values.image,
                 categoryId: values.categoryId,
                 stock: values.stock
-            });
-            navigate('/admin')
+            }).unwrap();  // 🔥 THIS is important
+    
             toast.success('Product added successfully');
+            navigate('/admin');
             setTimeout(() => {
                 window.location.reload();
             }, 1000);
+    
         } catch (error) {
-            console.log(error)
-            toast.error('Product not added successfully, please try again')
+            console.error(error);
+            toast.error('Product not added successfully, please try again');
         }
-
-
-
     }
 
 

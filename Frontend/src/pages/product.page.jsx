@@ -8,16 +8,23 @@ import { addToBuy } from "@/lib/features/buySlice"
 import { addToCart } from "@/lib/features/cartSlice"
 import ProductCards from "@/ProductCards"
 import ProductSkeleton from "@/ProductSkeleton"
+import { useUser } from "@clerk/clerk-react"
 import { useDispatch } from "react-redux"
-import { Link, useParams } from "react-router"
+import { Link, useNavigate, useParams } from "react-router"
 
 const ProductView = () => {
+    const {isSignedIn} = useUser()
     const { data: products } = useGetProductsQuery()
     const { id } = useParams()
     const { data: product, isLoading, isError, error } = useGetProductQuery(id)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
+
 
     const handleClick = (e) => {
+        if (!isSignedIn) {
+            navigate("/sign-in")
+        }
         dispatch(addToCart({
             _id: product._id,
             name: product.name,

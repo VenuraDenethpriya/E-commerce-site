@@ -1,7 +1,5 @@
 import express from 'express';
-
 import 'dotenv/config';
-const app = express();
 import { productRouter } from './api/product';
 import globalErrorHanlingMiddleware from './api/middleware/global-error-handling-middleware';
 import { categoryRouter } from './api/category';
@@ -11,9 +9,12 @@ import { orderRouter } from './api/order';
 import { clerkMiddleware } from '@clerk/express';
 import { paymentRouter } from './api/payment';
 import { userRouter } from './api/user';
+import { handleWebhook } from './application/payment';
+import bodyParser from 'body-parser';
 
-const publishableKey = process.env.VITE_CLERK_PUBLISHABLE_KEY;
-const secretKey = process.env.VITE_CLERK_SECRET_KEY
+const app = express();
+const publishableKey = process.env.CLERK_PUBLISHABLE_KEY;
+const secretKey = process.env.CLERK_SECRET_KEY
 
 app.use(express.json());
 app.use(clerkMiddleware({
@@ -22,6 +23,11 @@ app.use(clerkMiddleware({
 }));
 
 app.use(cors({ origin: 'http://localhost:5173', credentials: true, }));
+
+app.post('/api/stripe/webhook',
+    bodyParser.raw({ type: 'application/json' }),
+    handleWebhook
+);
 app.use((req, res, next) => {
     console.log('Request success');
     console.log(req.method, req.url);

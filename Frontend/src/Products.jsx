@@ -20,9 +20,9 @@ function Products() {
       : products.filter((product) => product.categoryId === selectedCategoryId);
 
 
-  const [productOrder, setProductOrder] =  useState("");
-  
-  const productList = filteredProducts ? [...filteredProducts].sort((a, b) => 
+  const [productOrder, setProductOrder] = useState("");
+
+  const productList = filteredProducts ? [...filteredProducts].sort((a, b) =>
     productOrder === "ascending" ? a.price - b.price : b.price - a.price
   ) : [];
 
@@ -31,8 +31,8 @@ function Products() {
   }
 
   const handleSortChange = (event) => {
-   setProductOrder(event.target.value)
-   }
+    setProductOrder(event.target.value)
+  }
 
   /*useEffect(() => {
     getProducts().then((data) => {
@@ -76,7 +76,7 @@ function Products() {
               })
           }
         </div>
-        <div className="grid grid-cols-4 gap-4 pt-4">
+        <div className="sm:grid block grid-cols-4 gap-4 pt-4">
           {
             Array(4)
               .fill(1)
@@ -84,7 +84,7 @@ function Products() {
                 return (
                   <Skeleton
                     key={index}
-                    className="h-96 bg-gray-200 rounded-lg p-4 relative justify-center"
+                    className="sm:h-96 h-28 bg-gray-200 rounded-lg p-4 relative justify-center"
                   />
                 );
               })
@@ -117,7 +117,7 @@ function Products() {
       <div className="flex justify-between">
         <h2 className="sm:text-4xl font-semibold text-sm">Our Top Products</h2>
         <SortBy
-        handleSortChange={handleSortChange}
+          handleSortChange={handleSortChange}
         />
       </div>
       <Separator className="mt-2" />

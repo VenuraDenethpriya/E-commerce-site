@@ -40,7 +40,7 @@ function AdminProductCard(props) {
             <div className="flex justify-between items-center mt-4 px-4">
                 <div>
                     <h2 className="font-bold tex-2xl">{props.name}</h2>
-                    <span className="font-semibold">${props.price}</span>
+                    <span className="font-semibold">LKR {props.price}</span>
                 </div>
                 {/*<div className="flex text-sm gap-2 cursor-pointer">
                     <div className="bg-slate-100 rounded-lg" onClick={handleDecrement}>

@@ -18,7 +18,7 @@ function ProductCard(props) {
 
     const handleClick = () => {
         if (!isSignedIn) {
-            window.location.href = "/sign-in";
+            navigate("/sign-in");
         }
         dispatch(addToCart({
             _id: props._id,
@@ -31,9 +31,6 @@ function ProductCard(props) {
     };
 
     const handleBuyClick = () => {
-        if (!isSignedIn) {
-            window.location.href = "/sign-in";
-        }
         dispatch(addToBuy({
             _id: props._id,
             name: props.name,
@@ -93,7 +90,7 @@ function ProductCard(props) {
 
             <div className="mt-4 px-4" onClick={handleProductClick}>
                 <h2 className="font-bold text-xl">{props.name}</h2>
-                <span className="font-semibold text-lg">${props.price}</span>
+                <span className="font-semibold text-lg">LKR {props.price}</span>
             </div>
 
             <div className="px-4 mt-2">

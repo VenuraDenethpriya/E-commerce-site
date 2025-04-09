@@ -3,15 +3,21 @@ import { clearBuy } from "@/lib/features/buySlice"
 import { clearCart } from "@/lib/features/cartSlice"
 import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
+import { Navigate, useNavigate, useSearchParams } from "react-router"
 import { toast } from "sonner"
+import CheckoutForm from "./CheckoutForm"
 
 function PaymentPage() {
   const cart = useSelector((state) => state.cart.value)
   const buy = useSelector((state) => state.buy.value)
   const dispatch = useDispatch()
+  const [searchParams, setSearchParams] = useSearchParams();
+  const orderId = searchParams.get("orderId")
+  const navigate = useNavigate()
 
   const totalAmount = cart.reduce((acc, item) => acc + item.product.price * item.quantity, 0)
   const totalBuyAmount = buy.reduce((acc, item) => acc + item.product.price * item.quantity , 0)
+
 
   return (
     <main className="container mx-auto px-4 py-8 max-w-4xl">
@@ -34,7 +40,7 @@ function PaymentPage() {
                 <p className="font-medium">{item.product.name}</p>
                 <p className="text-sm text-gray-600">Quantity: {item.quantity}</p>
               </div>
-              <p className="font-semibold">${(item.product.price * item.quantity).toFixed(2)}</p>
+              <p className="font-semibold">LKR {(item.product.price * item.quantity).toFixed(2)}</p>
             </div>
           ))}</div>
           }
@@ -45,8 +51,8 @@ function PaymentPage() {
         <div className="mt-4 pt-2 border-t">
           {
             buy.length > 0 ? (
-              <p className="text-xl font-bold text-right">Total: ${totalBuyAmount.toFixed(2)}</p>
-            ) : <p className="text-xl font-bold text-right">Total: ${totalAmount.toFixed(2)}</p>
+              <p className="text-xl font-bold text-right">Total: LKR {totalBuyAmount.toFixed(2)}</p>
+            ) : <p className="text-xl font-bold text-right">Total: LKR {totalAmount.toFixed(2)}</p>
 
           }
         </div>
@@ -58,10 +64,11 @@ function PaymentPage() {
           onClick={() => {
             dispatch(clearCart())
             dispatch(clearBuy())
-            toast.success("Order placed successfully")
+            navigate(`/shop/payments?orderId=${orderId}`)
+            //toast.success("Order placed successfully")
           }}
         >
-          Place Order
+          Proceed to Payment
         </Button>
       </div>
     </main>

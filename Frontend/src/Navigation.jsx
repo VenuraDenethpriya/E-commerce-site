@@ -30,7 +30,7 @@ function Navigation() {
         <div className="hidden sm:flex items-center gap-4">
           <div className="flex items-center gap-x-8 sm:gap-x-16">
             <Link to="/" className="font-semibold text-2xl sm:text-3xl">
-              Mebius
+            TechNest
             </Link>
             <div className="hidden sm:flex items-center gap-4">
               <Link to="/">Home</Link>
@@ -49,9 +49,8 @@ function Navigation() {
 
         {/* Mobile Menu */}
         <div
-          className={`sm:hidden absolute top-10 left-0 w-full bg-white shadow-md py-4 px-8 flex flex-col items-start space-y-4 transition-all duration-300 z-50 ${
-            isMenuOpen ? "block" : "hidden"
-          }`}
+          className={`sm:hidden absolute top-10 left-0 w-full bg-white shadow-md py-4 px-8 flex flex-col items-start space-y-4 transition-all duration-300 z-50 ${isMenuOpen ? "block" : "hidden"
+            }`}
         >
           <Link to="/" onClick={toggleMenu}>Home</Link>
           <Link to="/shop" onClick={toggleMenu}>Shop</Link>
@@ -101,7 +100,7 @@ function Navigation() {
     <nav className="flex items-center justify-between py-4 px-8 sm:px-12">
       <div className="flex items-center gap-x-8 sm:gap-x-16">
         <Link to="/" className="font-semibold text-2xl sm:text-3xl">
-          Mebius
+          TechNest
         </Link>
         <div className="hidden sm:flex items-center gap-4">
           <Link to="/">Home</Link>

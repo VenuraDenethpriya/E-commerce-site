@@ -1,8 +1,10 @@
+import Stripe from "stripe";
 import { ProductDTO } from "../domain/dto/product";
 import NotFoundError from "../domain/errors/not-found-error";
 import ValidationError from "../domain/errors/validation-error";
 import Product from "../infrastructure/schemas/Product";
 import { Request, Response, NextFunction } from "express";
+import stripe from "../infrastructure/stripe";
 
 export const getProducts = async (
   req:Request, 
@@ -34,8 +36,21 @@ export const createProducts = async (
         if (!result.success) {
             throw new ValidationError("Invalid product data");
         }
-    await Product.create(result.data);
-    res.status(201).send("successfully created")
+    
+    const stripeProduct = await stripe.products.create({
+      name: result.data.name,
+      description: result.data.description,
+      default_price_data: {
+        currency: "lkr",
+        unit_amount: result.data.price * 100,
+      },
+    })
+
+    const product = await Product.create({
+      ...result.data,
+      stripePriceId: stripeProduct.default_price,
+    });
+    res.status(201).json(product).send("successfully created")
     return;
   } catch (error) {
     next(error);

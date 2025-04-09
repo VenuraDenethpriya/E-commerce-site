@@ -23,8 +23,13 @@ import AdminProductPage from "./pages/admin.product.page";
 import AddProductPage from "./pages/add.page";
 import UsersPage from "./pages/users.page";
 import AdminOrderPage from "./pages/admin.orders.page";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import CheckoutForm from "./pages/CheckoutForm";
+import CheckoutFormWrapper from "./CheckoutFormWrapper";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
+const stripePromise = loadStripe("pk_test_51QeJbEHgXeh7NbLn3NId2Uro6Cy4IVI4jaUpbCkdk3tDgp2XeE8UkPt8jxkIpzlRJKSBnbOzBJ49OvYbv3DFXqKd000LgVgx9i");
 
 if (!PUBLISHABLE_KEY) {
   throw new Error("Missing Publishable Key")
@@ -44,8 +49,8 @@ createRoot(document.getElementById("root")).render(
               <Route path="/account" element={<Accountpage />} />
               <Route path="/shop/cart/checkout" element={<CheckoutPage />} />
               <Route path="/likeproducts" element={<LikeProducts />} />
-              <Route path="/shop/payments" element={<PaymentPage />} />
-              <Route path="/shop/complete" element={<CompletePage />} />
+              <Route path="/shop/payments" element={<CheckoutFormWrapper />} />
+              <Route path="/shop/complete/" element={<CompletePage />} />
               <Route path="/product/:id" element={<ProductView />} />
               <Route path="/product/:id/shop/cart/checkout" element={<CheckoutPage />} />
               <Route path="/shop/shop/cart/checkout" element={<CheckoutPage />} />

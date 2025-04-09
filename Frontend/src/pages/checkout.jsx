@@ -1,6 +1,7 @@
 import ShippingAddressform from "@/components/ShippingAddressform"
 import { useUser } from "@clerk/clerk-react"
 import { useSelector } from "react-redux"
+import { Link, Navigate } from "react-router"
 
 function CheckoutPage() {
   const { isLLoaded: isAuthLoaded, isSignedIn, user } = useUser()
@@ -8,7 +9,9 @@ function CheckoutPage() {
   const buy = useSelector((state) => state.buy.value)
     
   console.log(buy)
-    
+  if(!isSignedIn){
+    return <Navigate to="/sign-in"/>
+  } 
  
   return (
     <main className="container mx-auto px-4 py-8 max-w-4xl">
@@ -33,7 +36,7 @@ function CheckoutPage() {
                     <p className="font-medium">{item.product.name}</p>
                     <p className="text-sm text-gray-600">Quantity: {item.quantity}</p>
                   </div>
-                  <p className="font-semibold">${item.product.price}</p>
+                  <p className="font-semibold">LKR {item.product.price}</p>
                 </div>
               ))
               }</div>

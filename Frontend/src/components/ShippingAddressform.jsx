@@ -6,6 +6,7 @@ import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { useNavigate } from "react-router";
 import { useCreateOrderMutation, useGetProductsQuery, useUpdateProductMutation } from "@/lib/api";
+import { toast } from "sonner";
 
 
 const formSchema = z.object({
@@ -33,7 +34,8 @@ const ShippingAddressform = ({ cart, buy }) => {
 
 
     async function handleSubmit(values) {
-        const orderItems = buy?.length !=0 ? buy : cart;
+        try {
+            const orderItems = buy?.length !=0 ? buy : cart;
 
         for (const item of orderItems) {
             await updateProduct({
@@ -42,7 +44,7 @@ const ShippingAddressform = ({ cart, buy }) => {
             })
 
         }
-        createOrder({
+        const response = await createOrder({
             items: orderItems,
             ShippingAddress: {
                 name: values.name,
@@ -52,8 +54,14 @@ const ShippingAddressform = ({ cart, buy }) => {
                 state: values.state,
                 zipCode: values.zipCode,
             }
-        });
-        navigate('/shop/payments');
+        }).unwrap();
+        console.log(response);
+        toast.success("Checkout successful");
+        navigate(`/shop/payments?orderId=${response.orderId}`);
+        } catch (error) {
+            toast.error("check out failed" + error.message);
+        }
+        
     }
 
     return (
@@ -160,7 +168,7 @@ const ShippingAddressform = ({ cart, buy }) => {
                         />
                     </div>
                     <div className="mt-4">
-                        <Button type="submit">Proceed to Payment</Button>
+                        <Button type="submit">Place Order</Button>
                     </div>
 
                 </form>
