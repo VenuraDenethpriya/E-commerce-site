@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import util from "util";
-import Order from "../infrastructure/schemas/Order";
 import stripe from "../infrastructure/stripe";
+import Order from "../infrastructure/schemas/Order";
 
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET as string;
 const FRONTEND_URL = process.env.FRONTEND_URL as string;
@@ -38,12 +38,18 @@ async function fulfillCheckout(sessionId: string) {
     throw new Error("Order is not pending");
   }
 
-  // Check the Checkout Session's payment_status property
-  // to determine if fulfillment should be peformed
-  if (checkoutSession.payment_status !== "unpaid") {
-    // TODO: Perform fulfillment of the line items
-    // TODO: Record/save fulfillment status for this
-    // Checkout Session
+  // // Check the Checkout Session's payment_status property
+  // // to determine if fulfillment should be peformed
+  // if (checkoutSession.payment_status !== "unpaid") {
+  //   // TODO: Perform fulfillment of the line items
+  //   // TODO: Record/save fulfillment status for this
+  //   // Checkout Session
+  //   await Order.findByIdAndUpdate(order._id, {
+  //     paymentStatus: "PAID",
+  //     orderStatus: "CONFIRMED",
+  //   });
+  // }
+  if (checkoutSession.payment_status === "paid") {
     await Order.findByIdAndUpdate(order._id, {
       paymentStatus: "PAID",
       orderStatus: "CONFIRMED",
@@ -59,6 +65,7 @@ export const handleWebhook = async (req: Request, res: Response) => {
 
   try {
     event = stripe.webhooks.constructEvent(payload, sig, endpointSecret);
+    console.log("Webhook event received:", event.type);
     if (
       event.type === "checkout.session.completed" ||
       event.type === "checkout.session.async_payment_succeeded"

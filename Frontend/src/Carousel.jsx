@@ -30,7 +30,7 @@ export function CarouselPlugin() {
                         <div className="">
                             <Card>
                                 <CardContent className="w-full p-0">
-                                    <div className="grid sm:grid-cols-2 rounded-md sm:min-h-[60vh] bg-[#f4f8f9]">
+                                    <div className="grid sm:grid-cols-2 rounded-md sm:min-h-[60vh] bg-[#E2E4DF]">
                                         <div className="hidden sm:flex flex-col sm:w-auto  sm:h-auto justify-center gap-4 px-8">
                                             <span className="inline-block bg-[#febc26] w-fit rounded-full text-xs py-1 px-2">WEEKLY DISCOUNT</span>
                                             <h1 className="text-6xl font-semibold">Premium Product Online Shop</h1>
@@ -45,11 +45,11 @@ export function CarouselPlugin() {
                                             </Link>
 
                                         </div>
-                                        <div className="">
+                                        <div className="flex justify-end items-end">
                                             <img
-                                                src="https://fee-storefront.vercel.app/assets/hero/hero.jpg"
+                                                src="/hero.png"
                                                 alt=""
-                                                className="sm:h-full"
+                                                className="sm:h-full max-h-[60vh]"
                                             />
                                         </div>
                                     </div>

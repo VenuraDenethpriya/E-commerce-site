@@ -16,6 +16,11 @@ const app = express();
 const publishableKey = process.env.CLERK_PUBLISHABLE_KEY;
 const secretKey = process.env.CLERK_SECRET_KEY
 
+app.post('/api/stripe/webhook',
+    bodyParser.raw({ type: 'application/json' }),
+    handleWebhook
+);
+
 app.use(express.json());
 app.use(clerkMiddleware({
     publishableKey,
@@ -24,10 +29,7 @@ app.use(clerkMiddleware({
 
 app.use(cors({ origin: 'http://localhost:5173', credentials: true, }));
 
-app.post('/api/stripe/webhook',
-    bodyParser.raw({ type: 'application/json' }),
-    handleWebhook
-);
+
 app.use((req, res, next) => {
     console.log('Request success');
     console.log(req.method, req.url);

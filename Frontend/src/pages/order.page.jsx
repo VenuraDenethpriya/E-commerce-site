@@ -107,7 +107,7 @@ function OrderPage() {
                     {order.items.reduce((total, item) => total + item.product.price * item.quantity, 0).toFixed(2)}
                   </p>
                   <p className="mt-2">
-                    <span className="font-medium">Payment Status:</span> <span className={order.paymentStatus == 'paid' ? "" : "bg-red-200 text-red-900 rounded-full px-1"}>{order.paymentStatus}</span> 
+                    <span className="font-medium">Payment Status:</span> <span className={order.paymentStatus == 'PAID' ? "bg-green-100 text-green-800 rounded-full px-2" : "bg-red-200 text-red-900 rounded-full px-1"}>{order.paymentStatus}</span> 
                   </p>
                 </div>
               </div>
