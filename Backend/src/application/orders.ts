@@ -46,8 +46,8 @@ export const createOrder = async (
             //items: items,
             addressId: address._id,
         });
-        console.log("New order created:", newOrder);
         res.status(201).json({ orderId: newOrder._id });
+        console.log("New order created:", newOrder);
     } catch (error) {
         next(error);
     }
