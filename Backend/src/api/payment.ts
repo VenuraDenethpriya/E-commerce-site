@@ -4,5 +4,5 @@ import { createCheckoutSession, handleWebhook, retrieveSessionStatus } from '../
 export const paymentRouter = express.Router();
 
 //paymentRouter.route('/webhook').post(handleWebhook)
-paymentRouter.route('/create-checkout-session').post(createCheckoutSession)
+paymentRouter.route('/create-checkout-session').post(createCheckoutSession).get(createCheckoutSession)
 paymentRouter.route('/session-status').get(retrieveSessionStatus)
