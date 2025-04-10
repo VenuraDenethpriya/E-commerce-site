@@ -17,6 +17,13 @@ const app = express();
 const publishableKey = process.env.CLERK_PUBLISHABLE_KEY;
 const secretKey = process.env.CLERK_SECRET_KEY
 
+app.use(clerkMiddleware({
+    publishableKey,
+    secretKey,
+}));
+
+app.use(cors({ origin: 'https://mebius-venura-denethpriyas-projects.vercel.app', credentials: true}));
+
 app.post(
     '/api/stripe/webhook',
     bodyParser.raw({ type: 'application/json' }),
@@ -24,13 +31,6 @@ app.post(
 );
 
 app.use(express.json());
-
-app.use(clerkMiddleware({
-    publishableKey,
-    secretKey,
-}));
-
-app.use(cors({ origin: 'https://mebius-venura-denethpriyas-projects.vercel.app', credentials: true}));
 
 
 app.use((req, res, next) => {
@@ -44,6 +44,7 @@ app.use('/api/categories',categoryRouter)
 app.use('/api/orders', orderRouter)
 app.use('/api/payments', paymentRouter)
 app.use('/api/users', userRouter)
+
 app.use(globalErrorHanlingMiddleware as any);
 
 connectDB();
