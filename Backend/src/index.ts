@@ -30,7 +30,7 @@ app.use(clerkMiddleware({
     secretKey,
 }));
 
-app.use(cors({ origin: 'https://mebius-venura-denethpriyas-projects.vercel.app'}));
+app.use(cors({ origin: 'https://mebius-venura-denethpriyas-projects.vercel.app', credentials: true}));
 
 
 app.use((req, res, next) => {
