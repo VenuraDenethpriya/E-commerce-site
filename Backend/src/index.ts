@@ -13,6 +13,8 @@ import { handleWebhook } from './application/payment';
 import bodyParser from 'body-parser';
 
 const app = express();
+app.set('trust proxy', 1);
+
 const publishableKey = process.env.CLERK_PUBLISHABLE_KEY;
 const secretKey = process.env.CLERK_SECRET_KEY
 
