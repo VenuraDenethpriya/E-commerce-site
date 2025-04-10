@@ -13,7 +13,7 @@ const BASE_URL = import.meta.env.VITE_BASE_URL;
 const CheckoutForm = ({ orderId }) => {
   const fetchClientSecret = useCallback(() => {
     // Create a Checkout Session
-    return fetch(`${BASE_URL}api/payments/create-checkout-session`, {
+    return fetch(`${BASE_URL}/api/payments/create-checkout-session`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
