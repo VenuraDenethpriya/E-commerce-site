@@ -50,7 +50,7 @@ createRoot(document.getElementById("root")).render(
               <Route path="/shop/cart/checkout" element={<CheckoutPage />} />
               <Route path="/likeproducts" element={<LikeProducts />} />
               <Route path="/shop/payments" element={<CheckoutFormWrapper />} />
-              <Route path="/shop/complete?" element={<CompletePage />} />
+              <Route path="/shop/complete?session_id={CHECKOUT_SESSION_ID}" element={<CompletePage />} />
               <Route path="/product/:id" element={<ProductView />} />
               <Route path="/product/:id/shop/cart/checkout" element={<CheckoutPage />} />
               <Route path="/shop/shop/cart/checkout" element={<CheckoutPage />} />
