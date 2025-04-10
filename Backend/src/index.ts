@@ -13,6 +13,7 @@ import { handleWebhook } from './application/payment';
 import bodyParser from 'body-parser';
 
 const app = express();
+
 const publishableKey = process.env.CLERK_PUBLISHABLE_KEY;
 const secretKey = process.env.CLERK_SECRET_KEY
 
@@ -27,7 +28,7 @@ app.use(clerkMiddleware({
     secretKey,
 }));
 
-app.use(cors({ origin: 'http://localhost:5173', credentials: true, }));
+app.use(cors({ origin: 'https://mebius-venura-denethpriyas-projects.vercel.app', credentials: true, }));
 
 
 app.use((req, res, next) => {
