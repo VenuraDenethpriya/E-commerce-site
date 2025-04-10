@@ -42,8 +42,8 @@ export const createOrder = async (
 
         const newOrder = await Order.create({
             userId,
-            //items: result.data.items,
-            items: items,
+            items: result.data.items,
+            //items: items,
             addressId: address._id,
         });
         console.log("New order created:", newOrder);
