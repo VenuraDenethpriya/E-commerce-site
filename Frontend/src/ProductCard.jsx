@@ -99,11 +99,20 @@ function ProductCard(props) {
                     <Button variant="outline" className="border-2 border-black hover:bg-black hover:text-white" onClick={handleClick}>
                         Add to Cart
                     </Button>
-                    <Link to="shop/cart/checkout">
-                        <Button className="hover:scale-110 transition-transform duration-500 ease-in-out" onClick={handleBuyClick}>
-                            Buy Now
-                        </Button>
-                    </Link>
+                    {
+                        props.stock > 0 ? (
+                            <Link to="shop/cart/checkout">
+                                <Button className="hover:scale-110 transition-transform duration-500 ease-in-out" onClick={handleBuyClick}>
+                                    Buy Now
+                                </Button>
+                            </Link>
+                        ) : <Button
+                            disabled
+                            className="hover:scale-110 transition-transform duration-500 ease-in-out"
+                            onClick={handleBuyClick}>
+                            </Button>
+                    }
+
                 </div>
             </div>
         </Card>

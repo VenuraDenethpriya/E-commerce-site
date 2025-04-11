@@ -13,7 +13,7 @@ import { useDispatch } from "react-redux"
 import { Link, useNavigate, useParams } from "react-router"
 
 const ProductView = () => {
-    const {isSignedIn} = useUser()
+    const { isSignedIn } = useUser()
     const { data: products } = useGetProductsQuery()
     const { id } = useParams()
     const { data: product, isLoading, isError, error } = useGetProductQuery(id)
@@ -70,13 +70,11 @@ const ProductView = () => {
                     </div>
                     <div>
                         <div className="text-black text-xs font-semibold p-1 rounded-full z-50">
-                            {
-                                product.stock > 0 ? (
-                                    null
-                                ) : (
-                                    <Label className="text-red-500 text-sm">Out of Stock</Label>
-                                )
-                            }
+                            {product.stock === 0 ? (
+                                <Label className="text-red-500 text-sm">Out of Stock</Label>
+                            ) : product.stock < 5 ? (
+                                <Label className="text-red-500 text-sm">{product.stock} items left</Label>
+                            ) : null}
                         </div>
                         <h1 className="text-3xl font-bold mb-2">{product.name}</h1>
                         <Badge variant="secondary" className="mb-4">
