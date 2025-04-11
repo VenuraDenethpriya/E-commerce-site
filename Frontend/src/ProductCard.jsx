@@ -110,7 +110,8 @@ function ProductCard(props) {
                             disabled
                             className="hover:scale-110 transition-transform duration-500 ease-in-out"
                             onClick={handleBuyClick}>
-                            </Button>
+                            Buy Now
+                        </Button>
                     }
 
                 </div>
