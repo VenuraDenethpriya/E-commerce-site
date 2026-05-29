@@ -1,6 +1,6 @@
 import express from 'express';
 import { createOrder, getOrder, getOrders, getOrdersByUser, updateOrder } from '../application/orders.js';
-import { isAuthenticated } from './middleware/authentication-middleware';
+import { isAuthenticated } from './middleware/authentication-middleware.js';
 
 export const orderRouter = express.Router();
 

@@ -7,8 +7,8 @@ import {
   updateProduct,
 } from "../application/products.js";
 import { asyncHandler } from "../utils.js";
-import { isAuthenticated } from "./middleware/authentication-middleware";
-import { isAdmin } from "./middleware/authorization-middleware";
+import { isAuthenticated } from "./middleware/authentication-middleware.js";
+import { isAdmin } from "./middleware/authorization-middleware.js";
 
 export const productRouter = express.Router();
 
