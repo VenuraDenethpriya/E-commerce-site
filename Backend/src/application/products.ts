@@ -4,7 +4,7 @@ import NotFoundError from "../domain/errors/not-found-error";
 import ValidationError from "../domain/errors/validation-error";
 import Product from "../infrastructure/schemas/Product";
 import { Request, Response, NextFunction } from "express";
-import stripe from "../infrastructure/stripe";
+import stripe from "../infrastructure/stripe.js";
 
 export const getProducts = async (
   req:Request, 
