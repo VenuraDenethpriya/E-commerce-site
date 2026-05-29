@@ -6,7 +6,7 @@ import {
   getProducts,
   updateProduct,
 } from "../application/products.js";
-import { asyncHandler } from "../utils";
+import { asyncHandler } from "../utils.js";
 import { isAuthenticated } from "./middleware/authentication-middleware";
 import { isAdmin } from "./middleware/authorization-middleware";
 
