@@ -1,5 +1,5 @@
 import Stripe from "stripe";
-import { ProductDTO } from "../domain/dto/product";
+import { ProductDTO } from "../domain/dto/product.js";
 import NotFoundError from "../domain/errors/not-found-error";
 import ValidationError from "../domain/errors/validation-error";
 import Product from "../infrastructure/schemas/Product";

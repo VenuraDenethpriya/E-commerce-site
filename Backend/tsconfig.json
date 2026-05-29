@@ -1,21 +1,25 @@
 {
-    "compilerOptions": {
-      "sourceMap": true,
-      "outDir": "./dist",
-      "rootDir": "./src",
-      "strict": true,
-      "lib": ["esnext"],
-      "esModuleInterop": true,
-      "skipLibCheck": true
-    },
-    "include": [
-      "src/**/*"               
-    ],
-    "exclude": [
-      "node_modules",
-      "dist"
-    ],
-    "ts-node": {
-      "files": true
-    }
+  "compilerOptions": {
+    "target": "ES2022",           
+    "module": "CommonJS",         
+    "moduleResolution": "node",   
+    "ignoreDeprecations": "5.0",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    "lib": ["esnext"],
+    "esModuleInterop": true,
+    "skipLibCheck": true
+  },
+  "include": [
+    "src/**/*"               
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
+  "ts-node": {
+    "files": true
   }
+}
