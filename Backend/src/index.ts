@@ -3,7 +3,7 @@ import 'dotenv/config';
 import { productRouter } from './api/product.js';
 import globalErrorHanlingMiddleware from './api/middleware/global-error-handling-middleware.js';
 import { categoryRouter } from './api/category.js';
-import { connectDB } from './infrastructure/db';
+import { connectDB } from './infrastructure/db.js';
 import cors from 'cors';
 import { orderRouter } from './api/order.js';
 import { clerkMiddleware } from '@clerk/express';
