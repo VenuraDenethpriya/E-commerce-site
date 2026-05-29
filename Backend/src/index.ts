@@ -22,7 +22,7 @@ app.use(clerkMiddleware({
     secretKey,
 }));
 
-app.use(cors({ origin: 'https://mebius-venura-denethpriyas-projects.vercel.app', credentials: true}));
+app.use(cors({ origin: 'https://mebius.wenuradenethpriya.com', credentials: true}));
 
 app.post(
     '/api/stripe/webhook',
