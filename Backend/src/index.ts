@@ -1,7 +1,7 @@
 import express from 'express';
 import 'dotenv/config';
 import { productRouter } from './api/product.js';
-import globalErrorHanlingMiddleware from './api/middleware/global-error-handling-middleware';
+import globalErrorHanlingMiddleware from './api/middleware/global-error-handling-middleware.js';
 import { categoryRouter } from './api/category.js';
 import { connectDB } from './infrastructure/db';
 import cors from 'cors';
@@ -9,7 +9,7 @@ import { orderRouter } from './api/order.js';
 import { clerkMiddleware } from '@clerk/express';
 import { paymentRouter } from './api/payment.js';
 import { userRouter } from './api/user.js';
-import { handleWebhook } from './application/payment';
+import { handleWebhook } from './application/payment.js';
 import bodyParser from 'body-parser';
 
 const app = express();
