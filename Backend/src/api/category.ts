@@ -5,7 +5,7 @@ import {
     getCategories, 
     getCategory, 
     updateCategory 
-} from "../application/categories";
+} from "../application/categories.js";
 import { asyncHandler } from "../utils";
 import { isAuthenticated } from "./middleware/authentication-middleware";
 import { isAdmin } from "./middleware/authorization-middleware";

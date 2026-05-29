@@ -4,7 +4,7 @@ import {
   getAddress,
   updateAddress,
   deleteAddress,
-} from "../application/address";
+} from "../application/address.js";
 import { isAuthenticated } from "./middleware/authentication-middleware";
 
 export const addressRouter = express.Router();
