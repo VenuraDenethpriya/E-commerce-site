@@ -4,7 +4,7 @@ import Order from "../infrastructure/schemas/Order";
 import { getAuth } from "@clerk/express";
 import NotFoundError from "../domain/errors/not-found-error";
 import Address from "../infrastructure/schemas/Address";
-import { OrderDTO } from "../domain/dto/order.js";
+import { OrderDTO } from "../domain/dto/order";
 import Product from "../infrastructure/schemas/Product";
 
 
