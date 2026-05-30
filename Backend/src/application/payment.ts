@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import util from "util";
-import stripe from "../infrastructure/stripe.js";
-import Order from "../infrastructure/schemas/Order.js";
+import stripe from "../infrastructure/stripe";
+import Order from "../infrastructure/schemas/Order";
 
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET as string;
 const FRONTEND_URL = process.env.FRONTEND_URL as string;

@@ -1,10 +1,10 @@
 import Stripe from "stripe";
-import { ProductDTO } from "../domain/dto/product.js";
+import { ProductDTO } from "../domain/dto/product";
 import NotFoundError from "../domain/errors/not-found-error";
 import ValidationError from "../domain/errors/validation-error";
 import Product from "../infrastructure/schemas/Product";
 import { Request, Response, NextFunction } from "express";
-import stripe from "../infrastructure/stripe.js";
+import stripe from "../infrastructure/stripe";
 
 export const getProducts = async (
   req:Request, 

@@ -4,7 +4,7 @@ import { Separator } from "./components/ui/separator";
 import ProductCards from "./ProductCards";
 import Tab from "./Tab";
 import SortBy from "./SortBy";
-import { useGetCategoriesQuery, useGetProductsQuery } from "./lib/api.js";
+import { useGetCategoriesQuery, useGetProductsQuery } from "./lib/api";
 import { Skeleton } from "./components/ui/skeleton";
 
 function Products() {
