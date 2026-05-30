@@ -1,4 +1,4 @@
-import { CategoryDTO } from "../domain/dto/category.js";
+import { CategoryDTO } from "../domain/dto/category";
 import NotFoundError from "../domain/errors/not-found-error";
 import ValidationError from "../domain/errors/validation-error";
 import Category from "../infrastructure/schemas/Category";
