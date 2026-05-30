@@ -5,10 +5,10 @@ import {
     getCategories, 
     getCategory, 
     updateCategory 
-} from "../application/categories.js";
-import { asyncHandler } from "../utils.js";
-import { isAuthenticated } from "./middleware/authentication-middleware.js";
-import { isAdmin } from "./middleware/authorization-middleware.js";
+} from "../application/categories";
+import { asyncHandler } from "../utils";
+import { isAuthenticated } from "./middleware/authentication-middleware";
+import { isAdmin } from "./middleware/authorization-middleware";
 
 export const categoryRouter = express.Router();
 

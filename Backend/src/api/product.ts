@@ -5,10 +5,10 @@ import {
   getProduct,
   getProducts,
   updateProduct,
-} from "../application/products.js";
-import { asyncHandler } from "../utils.js";
-import { isAuthenticated } from "./middleware/authentication-middleware.js";
-import { isAdmin } from "./middleware/authorization-middleware.js";
+} from "../application/products";
+import { asyncHandler } from "../utils";
+import { isAuthenticated } from "./middleware/authentication-middleware";
+import { isAdmin } from "./middleware/authorization-middleware";
 
 export const productRouter = express.Router();
 
