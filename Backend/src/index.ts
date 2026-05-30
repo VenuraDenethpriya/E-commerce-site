@@ -22,7 +22,7 @@ app.use(clerkMiddleware({
     secretKey,
 }));
 
-app.use(cors({ origin: 'https://tecnest.wenuradenethpriya.com', credentials: true}));
+app.use(cors({ origin: 'https://technest.wenuradenethpriya.com', credentials: true}));
 
 app.post(
     '/api/stripe/webhook',
