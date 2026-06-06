@@ -1,0 +1,9 @@
+services:
+  frontend: 
+    image: venuradenethpriya/ecom:latest
+    container_name: react_frontend
+
+    ports:
+      - "80:80"
+
+    restart: always
